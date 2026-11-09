@@ -1,0 +1,589 @@
+/* =========================================
+   COLORS (from the Figma design)
+   ========================================= */
+:root {
+  --cream: #faf8f2;
+  --ink: #1e231d;
+  --green: #2e5a3c;
+  --button-text: #f3eee3;
+  --pink: #de9ac0;
+  --pink-overlay: rgba(222, 154, 192, 0.45);
+  --white: #ffffff;
+  --calendar-ink: #1e2a18;
+  --calendar-background: rgba(229, 200, 217, 0.21);
+  --tag-background: rgba(250, 248, 242, 0.92);
+  --muted-text: rgba(30, 35, 29, 0.55);
+  --body-text: rgba(30, 35, 29, 0.85);
+  --footer-text: rgba(30, 35, 29, 0.7);
+  --line: rgba(30, 35, 29, 0.15);
+}
+
+
+/* =========================================
+   BASICS
+   ========================================= */
+body {
+  margin: 0;
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+}
+
+h1,
+h2,
+p,
+ul,
+blockquote {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+
+/* =========================================
+   BUTTONS (Subscribe and Read the entry)
+   ========================================= */
+.button {
+  display: block;
+  background-color: var(--green);
+  color: var(--button-text);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 100px;
+}
+
+.button-large {
+  padding: 14px 28px;
+}
+
+
+/* =========================================
+   SITE HEADER
+   Total height: 28 + 40 + 28 + 1px line = 97px
+   ========================================= */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 64px;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 1.04px;
+  text-transform: uppercase;
+}
+
+/* The page you are on is bold and underlined */
+.nav-links .current {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   HERO
+   Three columns: left (250px), center, right (250px).
+   The left and right columns are the same width,
+   so the center column sits in the exact middle of the page.
+   Total height: 96 + 805 + 79 = 980px
+   ========================================= */
+.hero {
+  display: flex;
+  /* The hero photo fills the background, with a see-through pink layer on top.
+     The first layer (the gradient) is one solid color: pink at 45% opacity. */
+  background-image: linear-gradient(var(--pink-overlay), var(--pink-overlay)), url("images/hero-photo.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--white);
+  padding: 96px 64px 79px 64px;
+}
+
+/* ----- Left column ----- */
+.hero-left {
+  width: 250px;
+}
+
+/* Two lines of 26px = 52px tall */
+.hero-note {
+  font-size: 22px;
+  line-height: 26px;
+}
+
+/* Starts 440px from the top of the hero */
+.hero-description {
+  margin-top: 292px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+/* Starts 840px from the top of the hero */
+.hero-signature {
+  margin-top: 275px;
+  width: 160px;
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* ----- Center column ----- */
+.hero-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-photo {
+  width: 600px;
+  height: 580px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* The title is wider than the center column, so nowrap keeps it on one line
+   and it spreads out evenly on both sides */
+.hero-title {
+  margin-top: 36px;
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 96px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero-subtitle {
+  margin-top: 22px;
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.hero-meta {
+  margin-top: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 1.04px;
+  text-transform: uppercase;
+}
+
+/* ----- Right column ----- */
+.hero-side {
+  width: 250px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+/* Text that runs top to bottom */
+.hero-side-text {
+  writing-mode: vertical-rl;
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-size: 38px;
+  line-height: 45px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   SECTION HEADERS (used by Gallery and Calendar)
+   Height: 14 + 16 + 61 = 91px
+   ========================================= */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+}
+
+.eyebrow {
+  margin-bottom: 16px;
+  color: var(--muted-text);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 1.32px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section-title {
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 61px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section-link {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 1.04px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   GROWTH GALLERY PREVIEW
+   Total height: 112 + 91 + 48 + 536 + 112 = 899px
+   ========================================= */
+.gallery-preview {
+  padding: 112px 64px;
+}
+
+/* position: relative lets the next button sit on top of the cards */
+.cards {
+  display: flex;
+  gap: 24px;
+  position: relative;
+}
+
+/* Card height: 460 + 16 + 16 + 16 + 28 = 536px */
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-photo {
+  position: relative;
+}
+
+.card-photo img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Small "Week 01" label in the top left corner of the photo */
+.card-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: var(--tag-background);
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 1.32px;
+  text-transform: uppercase;
+}
+
+.card-date {
+  color: var(--muted-text);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+}
+
+.card-caption {
+  font-size: 22px;
+  line-height: 28px;
+}
+
+/* Round arrow button: it hangs 26px past the right edge of the last card */
+.next-button {
+  position: absolute;
+  top: 204px;
+  right: -26px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cream);
+  border-radius: 100px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.18);
+  font-size: 32px;
+  line-height: 32px;
+}
+
+
+/* =========================================
+   RECENT ENTRY
+   Total height: 1px line + 112 + 760 + 112 = 985px
+   ========================================= */
+.recent-entry {
+  display: flex;
+  align-items: center;
+  gap: 96px;
+  padding: 112px 64px;
+  border-top: 1px solid var(--line);
+}
+
+.entry-photo {
+  width: 620px;
+  height: 760px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.entry-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+/* "Entry." and "07" share the same baseline */
+.entry-label {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.entry-word {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.entry-number {
+  font-size: 140px;
+  line-height: 126px;
+}
+
+.entry-meta {
+  color: var(--muted-text);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+}
+
+.entry-title {
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 43px;
+}
+
+.entry-intro {
+  color: var(--body-text);
+  font-size: 16px;
+  line-height: 26px;
+}
+
+/* Quote with the green bar on its left */
+.pull-quote {
+  border-left: 4px solid var(--green);
+  padding-left: 24px;
+  font-size: 26px;
+  line-height: 35px;
+}
+
+
+/* =========================================
+   CARE CALENDAR
+   Total height: 1px line + 112 + 91 + 48 + 635 + 112 = 999px
+   ========================================= */
+.care-calendar {
+  padding: 112px;
+  border-top: 1px solid var(--line);
+}
+
+/* Height: 36 + 76 + 23 + 464 + 36 = 635px */
+.calendar {
+  background-color: var(--calendar-background);
+  border-radius: 20px;
+  padding: 36px 44px;
+  color: var(--calendar-ink);
+  font-family: "SF Compact Rounded", "Nunito", sans-serif;
+}
+
+/* ----- Calendar header: legend on the left, month in the middle ----- */
+.calendar-header {
+  display: flex;
+  align-items: flex-start;
+  height: 76px;
+}
+
+/* The legend sits 6px in and 4px up, like in Figma */
+.calendar-legend {
+  width: 194px;
+  margin-left: 6px;
+  margin-top: -4px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.calendar-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.calendar-legend img {
+  width: 15px;
+  height: 15px;
+}
+
+/* The right padding matches the legend (200px) so the month stays centered */
+.calendar-month {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 48px;
+  padding-right: 200px;
+  color: var(--pink);
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.month-name {
+  font-weight: 600;
+}
+
+.month-year {
+  font-weight: 300;
+}
+
+.month-arrow {
+  width: 24px;
+  color: var(--pink);
+  font-size: 32px;
+  line-height: 24px;
+  text-align: center;
+}
+
+/* ----- Row of day names: SUN, MON, TUE... (13 + 10 = 23px) ----- */
+.weekdays {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.weekdays li {
+  flex: 1;
+  padding-left: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 13px;
+  letter-spacing: 1.1px;
+}
+
+/* ----- Weeks: 5 rows that add up to 464px ----- */
+.week {
+  display: flex;
+  border-top: 1px solid var(--pink);
+}
+
+/* Each day is one box in the row: 91.8px tall plus the 1px line above = 92.8px (same as Figma) */
+.day {
+  flex: 1;
+  box-sizing: border-box; /* keeps the height the same with the padding included */
+  height: 91.8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Day number on the left, moon icon on the right */
+.day-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+.day-top img {
+  width: 14px;
+  height: 14px;
+}
+
+.water-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.holiday {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+
+/* =========================================
+   FOOTER
+   Total height: 1px line + 71 + 108 + 40 + 17 + 48 = 285px
+   ========================================= */
+.site-footer {
+  padding: 71px 64px 48px 64px;
+  border-top: 1px solid var(--line);
+}
+
+.footer-wordmark {
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-size: 108px;
+  line-height: 108px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.footer-copyright {
+  margin-top: 40px;
+  color: var(--footer-text);
+  font-size: 13px;
+  line-height: 17px;
+}
