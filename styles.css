@@ -8,6 +8,7 @@
   --button-text: #f3eee3;
   --pink: #de9ac0;
   --pink-overlay: rgba(222, 154, 192, 0.45);
+  --search-background: #f3f1ec;
   --white: #ffffff;
   --calendar-ink: #1e2a18;
   --calendar-background: rgba(229, 200, 217, 0.21);
@@ -22,8 +23,15 @@
 /* =========================================
    BASICS
    ========================================= */
+/* The page is always laid out at exactly 1440px wide, like the Figma frame.
+   scale.js then zooms the whole page up or down to fit the window,
+   the same way Figma's preview does.
+   position: relative keeps the back button on the Lyi Prism page
+   in the page's corner, not the window's corner. */
 body {
-  margin: 0;
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
   background-color: var(--cream);
   color: var(--ink);
   font-family: "DM Sans", sans-serif;
@@ -429,110 +437,114 @@ a {
 
 /* =========================================
    CARE CALENDAR
-   Total height: 1px line + 112 + 91 + 48 + 635 + 112 = 999px
    ========================================= */
 .care-calendar {
-  padding: 112px;
+  padding: 112px 112px 31px 112px;
   border-top: 1px solid var(--line);
 }
 
-/* Height: 36 + 76 + 23 + 464 + 36 = 635px */
+/* Green box, 1167px wide, centered under the header.
+   The 60px top margin replaces the header's 48px bottom margin
+   (two margins that touch don't add up, the bigger one wins).
+   overflow: hidden clips the photo to the rounded corners. */
 .calendar {
-  background-color: var(--calendar-background);
+  width: 1167px;
+  margin: 60px auto 0 auto;
+  padding-bottom: 11px;
+  background-color: var(--green);
   border-radius: 20px;
-  padding: 36px 44px;
-  color: var(--calendar-ink);
+  overflow: hidden;
+  color: var(--cream);
   font-family: "SF Compact Rounded", "Nunito", sans-serif;
 }
 
-/* ----- Calendar header: legend on the left, month in the middle ----- */
-.calendar-header {
+/* ----- Photo header (379px tall) ----- */
+.calendar-photo {
   display: flex;
-  align-items: flex-start;
-  height: 76px;
+  justify-content: space-between;
+  height: 379px;
+  background-image: url("images/calendar-photo.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-/* The legend sits 6px in and 4px up, like in Figma */
-.calendar-legend {
-  width: 194px;
-  margin-left: 6px;
-  margin-top: -4px;
-  font-size: 12px;
-  line-height: 20px;
+/* NOVEMBER starts 202px from the top of the photo */
+.calendar-photo-left {
+  padding-top: 202px;
 }
 
-.calendar-legend li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.calendar-legend img {
-  width: 15px;
-  height: 15px;
-}
-
-/* The right padding matches the legend (200px) so the month stays centered */
 .calendar-month {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  height: 48px;
-  padding-right: 200px;
+  margin-left: 16px;
   color: var(--pink);
-  font-size: 40px;
-  line-height: 48px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 128px;
+  font-weight: 900;
+  line-height: 118px;
+  text-transform: uppercase;
 }
 
-.month-name {
-  font-weight: 600;
+.calendar-label {
+  margin-top: 4px;
+  margin-left: 24px;
+  color: var(--white);
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 1.32px;
+  text-transform: uppercase;
 }
 
-.month-year {
-  font-weight: 300;
+/* 2026 with one number per line, 36px from the right edge */
+.calendar-year {
+  margin-top: 34px;
+  margin-right: 36px;
+  color: var(--white);
+  font-family: "DM Sans", sans-serif;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 80px;
+  text-align: right;
 }
 
-.month-arrow {
-  width: 24px;
-  color: var(--pink);
-  font-size: 32px;
-  line-height: 24px;
-  text-align: center;
-}
-
-/* ----- Row of day names: SUN, MON, TUE... (13 + 10 = 23px) ----- */
+/* ----- Cream strip with the day names (8 + 13 + 8 = 29px) ----- */
 .weekdays {
   display: flex;
-  padding-bottom: 10px;
+  padding: 8px 0;
+  background-color: var(--cream);
 }
 
 .weekdays li {
   flex: 1;
   padding-left: 12px;
+  color: var(--pink);
   font-size: 11px;
   font-weight: 600;
   line-height: 13px;
   letter-spacing: 1.1px;
 }
 
-/* ----- Weeks: 5 rows that add up to 464px ----- */
+/* ----- Weeks: each row has a thin cream line on top ----- */
 .week {
   display: flex;
-  border-top: 1px solid var(--pink);
+  border-top: 1px solid var(--cream);
 }
 
-/* Each day is one box in the row: 91.8px tall plus the 1px line above = 92.8px (same as Figma) */
+/* Each day box is 123.6px tall plus the 1px line = 124.6px (same as Figma) */
 .day {
   flex: 1;
   box-sizing: border-box; /* keeps the height the same with the padding included */
-  height: 91.8px;
+  height: 123.6px;
   padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+/* The first day in each week sits a little farther in, like in Figma */
+.first-day {
+  padding-left: 18px;
 }
 
 /* Day number on the left, moon icon on the right */
@@ -549,11 +561,6 @@ a {
 .day-top img {
   width: 14px;
   height: 14px;
-}
-
-.water-icon {
-  width: 20px;
-  height: 20px;
 }
 
 .holiday {
@@ -586,4 +593,407 @@ a {
   color: var(--footer-text);
   font-size: 13px;
   line-height: 17px;
+}
+
+
+/* =========================================================================
+   JOURNAL ENTRY PAGE (lyi-prism.html)
+   Uses the colors, buttons, section headers, cards and footer from above.
+   ========================================================================= */
+
+
+/* =========================================
+   BACK BUTTON (top left corner, on top of the hero)
+   ========================================= */
+.back-button {
+  position: absolute;
+  top: 42px;
+  left: 52px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cream);
+  border-radius: 100px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.18);
+  color: var(--pink);
+  font-size: 32px;
+  line-height: 32px;
+}
+
+
+/* =========================================
+   ENTRY HERO
+   Same idea as the home hero: left (250px), center, right (250px).
+   Total height: 172 + 835 + 66 = 1073px
+   ========================================= */
+.entry-hero {
+  display: flex;
+  /* The background photo with a see-through pink layer on top */
+  background-image: linear-gradient(var(--pink-overlay), var(--pink-overlay)), url("images/lyi-prism-background.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--white);
+  padding: 172px 64px 66px 64px;
+}
+
+/* ----- Left column ----- */
+.entry-hero-left {
+  width: 250px;
+}
+
+/* Starts 190px from the top of the page */
+.entry-hero-note {
+  margin-top: 18px;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+/* Starts 550px from the top of the page */
+.entry-hero-description {
+  margin-top: 308px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+/* Starts 910px from the top of the page */
+.entry-hero-signature {
+  margin-top: 235px;
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* ----- Center column ----- */
+.entry-hero-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.entry-hero-photo {
+  width: 600px;
+  height: 620px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.entry-hero-title {
+  margin-top: 29px;
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 96px;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.entry-hero-subtitle {
+  margin-top: 19px;
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.entry-hero-meta {
+  margin-top: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 1.04px;
+  text-transform: uppercase;
+}
+
+/* ----- Right column ----- */
+/* The side text sits 100px from the right edge of the page */
+.entry-hero-side {
+  width: 250px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.entry-hero-side-text {
+  margin-top: 18px;
+  margin-right: 36px;
+  writing-mode: vertical-rl;
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-size: 38px;
+  line-height: 45px;
+  letter-spacing: 2.28px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   STATS ("The plant, by numbers")
+   Total height: 1 + 56 + 128 + 56 + 1 = 242px
+   ========================================= */
+.stats {
+  display: flex;
+  gap: 32px;
+  padding: 56px 64px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.stats-heading {
+  width: 220px;
+  font-size: 22px;
+  line-height: 28px;
+}
+
+/* Each stat takes an equal share of the remaining space */
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-number {
+  color: var(--pink);
+  font-size: 104px;
+  line-height: 104px;
+}
+
+/* The sun is 100px tall, with 12px of space under it */
+.stat-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   ARTICLE PARTS (Page 01, Page 02)
+   Photo on the left, text on the right, like the home page's recent entry.
+   Uses .entry-photo, .entry-text, .entry-word, .entry-number,
+   .entry-title, .entry-intro and .pull-quote from the home page.
+   Total height: 112 + 760 + 112 = 984px
+   ========================================= */
+.article-part {
+  display: flex;
+  align-items: center;
+  gap: 96px;
+  padding: 112px 64px;
+}
+
+/* "Page." and the big number line up along their bottom edges */
+.page-label {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* "nothing" is bold and italic */
+.entry-intro em {
+  font-weight: 700;
+}
+
+
+/* =========================================
+   FROM THE JOURNAL
+   Uses .section-header, .section-link, .cards, .card, .card-photo
+   and .card-date from the home page.
+   Total height: 1 + 84 + 70 + 48 + 574 + 112 = 889px
+   ========================================= */
+.from-journal {
+  padding: 84px 64px 112px 64px;
+  border-top: 1px solid var(--line);
+}
+
+/* "See all entries" sits 9px lower than the bottom of the title */
+.from-journal-title {
+  margin-bottom: 9px;
+}
+
+/* Plant name in white on the bottom left of the photo */
+.post-name {
+  position: absolute;
+  bottom: 18px;
+  left: 14px;
+  color: var(--white);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 40px;
+  white-space: nowrap;
+}
+
+.post-caption {
+  font-size: 26px;
+  line-height: 33px;
+}
+
+
+/* =========================================
+   FOOTER WITHOUT THE LINE ON TOP
+   (on the journal page the section above has no line at the bottom)
+   ========================================= */
+.site-footer-plain {
+  border-top: 0;
+  padding-top: 72px;
+}
+
+
+/* =========================================================================
+   ALL JOURNAL ENTRIES PAGE (journal.html)
+   Uses the site header, .card-photo and .post-name from above.
+   ========================================================================= */
+
+
+/* =========================================
+   SEARCH BAR AND CREATE ENTRY BUTTON
+   ========================================= */
+.journal-tools {
+  padding: 62px 55px 0 55px;
+}
+
+/* Search box on the left, round × button on the right */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 71px;
+  box-sizing: border-box;
+  padding: 0 16px 0 12px;
+  background-color: var(--search-background);
+  border: 1px solid var(--white);
+  border-radius: 100px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-field img {
+  width: 21px;
+  height: 22px;
+}
+
+/* The text box itself has no border or background, so the pill shape shows through */
+.search-field input {
+  flex: 1;
+  border: 0;
+  background-color: transparent;
+  outline: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 17px;
+  line-height: 22px;
+  color: var(--calendar-ink);
+}
+
+.search-clear {
+  width: 48px;
+  height: 48px;
+  background-color: var(--search-background);
+  border: 1px solid var(--white);
+  border-radius: 100px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--calendar-ink);
+  font-size: 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+/* White pill button 77px below the search bar */
+.create-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 77px;
+  margin-left: 3px;
+  padding: 12px 8px;
+  background-color: var(--white);
+  border-radius: 100px;
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+  color: var(--calendar-ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 1.04px;
+  text-transform: uppercase;
+}
+
+.create-plus {
+  width: 24px;
+  font-size: 26px;
+  font-weight: 400;
+  text-align: center;
+}
+
+
+/* =========================================
+   GRID OF ENTRY CARDS
+   Three cards per row. flex-wrap moves the 4th card down to a new row.
+   ========================================= */
+.entry-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 24px;
+  row-gap: 72px;
+  padding: 72px 64px 96px 64px;
+}
+
+/* White card with 8px of space around the photo and text */
+.entry-card {
+  box-sizing: border-box; /* the 8px padding is included in the width */
+  width: 421.33px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+  background-color: var(--white);
+  border-radius: 20px;
+  color: var(--calendar-ink);
+}
+
+.entry-card .card-photo img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Two-line plant names sit a little lower in the photo */
+.post-name-two-lines {
+  bottom: 10px;
+}
+
+.entry-card-date {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+}
+
+.entry-card-caption {
+  font-size: 26px;
+  line-height: 33px;
 }

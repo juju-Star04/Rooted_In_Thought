@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Libre+Caslon+Text:ital@0;1&family=Nunito:wght@300;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=Libre+Caslon+Text:ital@0;1&family=Nunito:wght@300;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -115,7 +115,7 @@
         <h2 class="entry-title">Third time’s a charm</h2>
         <p class="entry-intro">Three years, three different plants, and a lot of doing nothing. This is the story of how my variegated hoya finally grew, and everything I got wrong along the way — from over-watering on a schedule to finally learning to leave it alone.</p>
         <blockquote class="pull-quote">“It didn’t need more from me. It needed less, for longer.”</blockquote>
-        <a class="button button-large" href="journal.html">Read the entry →</a>
+        <a class="button button-large" href="lyi-prism.html">Read the entry →</a>
       </div>
 
     </section>
@@ -134,17 +134,13 @@
 
       <div class="calendar">
 
-        <div class="calendar-header">
-          <ul class="calendar-legend">
-            <li>Water Once A Week <img src="images/water-drop.svg" alt=""></li>
-            <li>Bright Sunlight <img src="images/sun.svg" alt=""></li>
-          </ul>
-          <p class="calendar-month">
-            <a class="month-arrow" href="#">‹</a>
-            <span class="month-name">November</span>
-            <span class="month-year">2026</span>
-            <a class="month-arrow" href="#">›</a>
-          </p>
+        <!-- Photo header: NOVEMBER and the label on the left, 2026 stacked on the right -->
+        <div class="calendar-photo">
+          <div class="calendar-photo-left">
+            <p class="calendar-month">November</p>
+            <p class="calendar-label">Care calendar · Hoya Lyi Prism</p>
+          </div>
+          <p class="calendar-year">2<br>0<br>2<br>6</p>
         </div>
 
         <ul class="weekdays">
@@ -159,13 +155,10 @@
 
         <!-- Week 1 -->
         <ul class="week">
-          <li class="day">
+          <li class="day first-day">
             <p class="day-top">1 <img src="images/moon-last-quarter.svg" alt="Last quarter moon"></p>
           </li>
-          <li class="day">
-            <p class="day-top">2</p>
-            <img class="water-icon" src="images/water-drop.svg" alt="Water">
-          </li>
+          <li class="day"><p class="day-top">2</p></li>
           <li class="day"><p class="day-top">3</p></li>
           <li class="day"><p class="day-top">4</p></li>
           <li class="day"><p class="day-top">5</p></li>
@@ -175,10 +168,9 @@
 
         <!-- Week 2 -->
         <ul class="week">
-          <li class="day"><p class="day-top">8</p></li>
+          <li class="day first-day"><p class="day-top">8</p></li>
           <li class="day">
             <p class="day-top">9 <img src="images/moon-new.svg" alt="New moon"></p>
-            <img class="water-icon" src="images/water-drop.svg" alt="Water">
           </li>
           <li class="day"><p class="day-top">10</p></li>
           <li class="day">
@@ -192,11 +184,8 @@
 
         <!-- Week 3 -->
         <ul class="week">
-          <li class="day"><p class="day-top">15</p></li>
-          <li class="day">
-            <p class="day-top">16</p>
-            <img class="water-icon" src="images/water-drop.svg" alt="Water">
-          </li>
+          <li class="day first-day"><p class="day-top">15</p></li>
+          <li class="day"><p class="day-top">16</p></li>
           <li class="day">
             <p class="day-top">17 <img src="images/moon-first-quarter.svg" alt="First quarter moon"></p>
           </li>
@@ -208,11 +197,8 @@
 
         <!-- Week 4 -->
         <ul class="week">
-          <li class="day"><p class="day-top">22</p></li>
-          <li class="day">
-            <p class="day-top">23</p>
-            <img class="water-icon" src="images/water-drop.svg" alt="Water">
-          </li>
+          <li class="day first-day"><p class="day-top">22</p></li>
+          <li class="day"><p class="day-top">23</p></li>
           <li class="day">
             <p class="day-top">24 <img src="images/moon-full.svg" alt="Full moon"></p>
           </li>
@@ -227,11 +213,8 @@
 
         <!-- Week 5 -->
         <ul class="week">
-          <li class="day"><p class="day-top">29</p></li>
-          <li class="day">
-            <p class="day-top">30</p>
-            <img class="water-icon" src="images/water-drop.svg" alt="Water">
-          </li>
+          <li class="day first-day"><p class="day-top">29</p></li>
+          <li class="day"><p class="day-top">30</p></li>
           <li class="day"></li>
           <li class="day"></li>
           <li class="day"></li>
@@ -250,6 +233,9 @@
     <p class="footer-wordmark">Rooted in thought</p>
     <p class="footer-copyright">© 2026 Rooted in Thought</p>
   </footer>
+
+  <!-- Scales the page to fit the window, like Figma's preview -->
+  <script src="scale.js"></script>
 
 </body>
 </html>
